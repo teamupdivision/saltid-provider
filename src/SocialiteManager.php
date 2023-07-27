@@ -1,23 +1,23 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Teamupdivision\SaltId;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Manager;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Laravel\Socialite\One\TwitterProvider;
-use Laravel\Socialite\Two\BitbucketProvider;
-use Laravel\Socialite\Two\FacebookProvider;
-use Laravel\Socialite\Two\GithubProvider;
-use Laravel\Socialite\Two\GitlabProvider;
-use Laravel\Socialite\Two\GoogleProvider;
-use Laravel\Socialite\Two\LinkedInProvider;
-use Laravel\Socialite\Two\SlackProvider;
-use Laravel\Socialite\Two\TwitterProvider as TwitterOAuth2Provider;
+use Teamupdivision\SaltId\One\TwitterProvider;
+use Teamupdivision\SaltId\Two\BitbucketProvider;
+use Teamupdivision\SaltId\Two\FacebookProvider;
+use Teamupdivision\SaltId\Two\GithubProvider;
+use Teamupdivision\SaltId\Two\GitlabProvider;
+use Teamupdivision\SaltId\Two\GoogleProvider;
+use Teamupdivision\SaltId\Two\LinkedInProvider;
+use Teamupdivision\SaltId\Two\SlackProvider;
+use Teamupdivision\SaltId\Two\TwitterProvider as TwitterOAuth2Provider;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
 
-class SocialiteManager extends Manager implements Contracts\Factory
+class SaltIdManager extends Manager implements Contracts\Factory
 {
     /**
      * The application instance.
@@ -42,7 +42,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createGithubDriver()
     {
@@ -56,7 +56,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
         /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createSaltIdDriver()
     {
@@ -70,7 +70,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createFacebookDriver()
     {
@@ -84,7 +84,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createGoogleDriver()
     {
@@ -98,7 +98,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createLinkedinDriver()
     {
@@ -112,7 +112,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createBitbucketDriver()
     {
@@ -126,7 +126,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createGitlabDriver()
     {
@@ -140,7 +140,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\One\AbstractProvider|\Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\One\AbstractProvider|\Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createTwitterDriver()
     {
@@ -158,7 +158,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createTwitterOAuth2Driver()
     {
@@ -172,7 +172,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     protected function createSlackDriver()
     {
@@ -188,7 +188,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
      *
      * @param  string  $provider
      * @param  array  $config
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Two\AbstractProvider
      */
     public function buildProvider($provider, $config)
     {

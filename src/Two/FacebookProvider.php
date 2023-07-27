@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Teamupdivision\SaltId\Two;
 
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;

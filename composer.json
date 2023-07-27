@@ -26,12 +26,22 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\SaltId\\": "src/"
+            "Teamupdivision\\SaltId\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\SaltId\\Tests\\": "tests/"
+            "Teamupdivision\\SaltId\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Teamupdivision\\SaltId\\SaltIdServiceProvider"
+            ],
+            "aliases": {
+                "SaltId": "Teamupdivision\\SaltId\\Facades\\SaltId"
+            }
         }
     },
     "config": {

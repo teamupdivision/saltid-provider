@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Teamupdivision\SaltId;
 
 use ArrayAccess;
-use Laravel\Socialite\Contracts\User;
+use Teamupdivision\SaltId\Contracts\User;
 
 abstract class AbstractUser implements ArrayAccess, User
 {

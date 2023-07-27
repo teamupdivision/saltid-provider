@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Teamupdivision\SaltId\One;
 
 class TwitterProvider extends AbstractProvider
 {

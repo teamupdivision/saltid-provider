@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Teamupdivision\SaltId\One;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Contracts\Provider as ProviderContract;
+use Teamupdivision\SaltId\Contracts\Provider as ProviderContract;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Server\Server;
 
@@ -61,9 +61,9 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Laravel\Socialite\One\User
+     * @return \Teamupdivision\SaltId\One\User
      *
-     * @throws \Laravel\Socialite\One\MissingVerifierException
+     * @throws \Teamupdivision\SaltId\One\MissingVerifierException
      */
     public function user()
     {
@@ -94,7 +94,7 @@ abstract class AbstractProvider implements ProviderContract
      *
      * @param  string  $token
      * @param  string  $secret
-     * @return \Laravel\Socialite\One\User
+     * @return \Teamupdivision\SaltId\One\User
      */
     public function userFromTokenAndSecret($token, $secret)
     {

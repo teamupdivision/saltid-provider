@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Contracts;
+namespace Teamupdivision\SaltId\Contracts;
 
 interface User
 {

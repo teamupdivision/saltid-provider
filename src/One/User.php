@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Teamupdivision\SaltId\One;
 
-use Laravel\Socialite\AbstractUser;
+use Teamupdivision\SaltId\AbstractUser;
 
 class User extends AbstractUser
 {

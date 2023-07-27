@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Teamupdivision\SaltId;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Socialite\Contracts\Factory;
+use Teamupdivision\SaltId\Contracts\Factory;
 
-class SocialiteServiceProvider extends ServiceProvider implements DeferrableProvider
+class SaltIdServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register the service provider.
