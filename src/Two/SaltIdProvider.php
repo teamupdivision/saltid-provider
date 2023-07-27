@@ -8,6 +8,13 @@ use Illuminate\Support\Arr;
 
 class SaltIdProvider extends AbstractProvider implements ProviderInterface
 {
+    protected $config;
+
+    public function __construct($config)
+    {
+        $this->config = $config;
+
+    }
     /**
      * The scopes being requested.
      *

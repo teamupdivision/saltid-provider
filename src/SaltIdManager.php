@@ -10,6 +10,7 @@ use Teamupdivision\SaltId\One\TwitterProvider;
 use Teamupdivision\SaltId\Two\BitbucketProvider;
 use Teamupdivision\SaltId\Two\FacebookProvider;
 use Teamupdivision\SaltId\Two\GithubProvider;
+use Teamupdivision\SaltId\Two\SaltIdProvider;
 use Teamupdivision\SaltId\Two\GitlabProvider;
 use Teamupdivision\SaltId\Two\GoogleProvider;
 use Teamupdivision\SaltId\Two\LinkedInProvider;
@@ -62,6 +63,7 @@ class SaltIdManager extends Manager implements Contracts\Factory
     {
         $config = $this->config->get('services.saltid');
 
+        // new SaltIdProvider($config);
         return $this->buildProvider(
             SaltIdProvider::class, $config
         );
