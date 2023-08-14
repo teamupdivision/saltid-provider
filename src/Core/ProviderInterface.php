@@ -1,6 +1,6 @@
 <?php
 
-namespace Teamupdivision\SaltId\Two;
+namespace Teamupdivision\SaltId\Core;
 
 interface ProviderInterface
 {
@@ -14,7 +14,7 @@ interface ProviderInterface
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Teamupdivision\SaltId\Two\User
+     * @return \Teamupdivision\SaltId\Core\User
      */
     public function user();
 }

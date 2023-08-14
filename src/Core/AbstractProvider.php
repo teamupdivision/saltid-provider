@@ -1,6 +1,6 @@
 <?php
 
-namespace Teamupdivision\SaltId\Two;
+namespace Teamupdivision\SaltId\Core;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -99,7 +99,7 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * The cached user instance.
      *
-     * @var \Teamupdivision\SaltId\Two\User|null
+     * @var \Teamupdivision\SaltId\Core\User|null
      */
     protected $user;
 
@@ -149,7 +149,7 @@ abstract class AbstractProvider implements ProviderContract
      * Map the raw user array to a Socialite User instance.
      *
      * @param  array  $user
-     * @return \Teamupdivision\SaltId\Two\User
+     * @return \Teamupdivision\SaltId\Core\User
      */
     abstract protected function mapUserToObject(array $user);
 
@@ -252,7 +252,7 @@ abstract class AbstractProvider implements ProviderContract
      * Get a Social User instance from a known access token.
      *
      * @param  string  $token
-     * @return \Teamupdivision\SaltId\Two\User
+     * @return \Teamupdivision\SaltId\Core\User
      */
     public function userFromToken($token)
     {

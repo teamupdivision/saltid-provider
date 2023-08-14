@@ -6,17 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Manager;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Teamupdivision\SaltId\One\TwitterProvider;
-use Teamupdivision\SaltId\Two\BitbucketProvider;
-use Teamupdivision\SaltId\Two\FacebookProvider;
-use Teamupdivision\SaltId\Two\GithubProvider;
-use Teamupdivision\SaltId\Two\SaltIdProvider;
-use Teamupdivision\SaltId\Two\GitlabProvider;
-use Teamupdivision\SaltId\Two\GoogleProvider;
-use Teamupdivision\SaltId\Two\LinkedInProvider;
-use Teamupdivision\SaltId\Two\SlackProvider;
-use Teamupdivision\SaltId\Two\TwitterProvider as TwitterOAuth2Provider;
-use League\OAuth1\Client\Server\Twitter as TwitterServer;
+use Teamupdivision\SaltId\Core\SaltIdProvider;
 
 class SaltIdManager extends Manager implements Contracts\Factory
 {
@@ -40,24 +30,10 @@ class SaltIdManager extends Manager implements Contracts\Factory
         return $this->driver($driver);
     }
 
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createGithubDriver()
-    {
-        $config = $this->config->get('services.github');
-
-        return $this->buildProvider(
-            GithubProvider::class, $config
-        );
-    }
-
         /**
      * Create an instance of the specified driver.
      *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Core\AbstractProvider
      */
     protected function createSaltIdDriver()
     {
@@ -70,127 +46,11 @@ class SaltIdManager extends Manager implements Contracts\Factory
     }
 
     /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createFacebookDriver()
-    {
-        $config = $this->config->get('services.facebook');
-
-        return $this->buildProvider(
-            FacebookProvider::class, $config
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createGoogleDriver()
-    {
-        $config = $this->config->get('services.google');
-
-        return $this->buildProvider(
-            GoogleProvider::class, $config
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createLinkedinDriver()
-    {
-        $config = $this->config->get('services.linkedin');
-
-        return $this->buildProvider(
-            LinkedInProvider::class, $config
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createBitbucketDriver()
-    {
-        $config = $this->config->get('services.bitbucket');
-
-        return $this->buildProvider(
-            BitbucketProvider::class, $config
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createGitlabDriver()
-    {
-        $config = $this->config->get('services.gitlab');
-
-        return $this->buildProvider(
-            GitlabProvider::class, $config
-        )->setHost($config['host'] ?? null);
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\One\AbstractProvider|\Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createTwitterDriver()
-    {
-        $config = $this->config->get('services.twitter');
-
-        if (($config['oauth'] ?? null) === 2) {
-            return $this->createTwitterOAuth2Driver();
-        }
-
-        return new TwitterProvider(
-            $this->container->make('request'), new TwitterServer($this->formatConfig($config))
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createTwitterOAuth2Driver()
-    {
-        $config = $this->config->get('services.twitter') ?? $this->config->get('services.twitter-oauth-2');
-
-        return $this->buildProvider(
-            TwitterOAuth2Provider::class, $config
-        );
-    }
-
-    /**
-     * Create an instance of the specified driver.
-     *
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
-     */
-    protected function createSlackDriver()
-    {
-        $config = $this->config->get('services.slack');
-
-        return $this->buildProvider(
-            SlackProvider::class, $config
-        );
-    }
-
-    /**
      * Build an OAuth 2 provider instance.
      *
      * @param  string  $provider
      * @param  array  $config
-     * @return \Teamupdivision\SaltId\Two\AbstractProvider
+     * @return \Teamupdivision\SaltId\Core\AbstractProvider
      */
     public function buildProvider($provider, $config)
     {

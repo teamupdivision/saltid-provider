@@ -7,7 +7,7 @@ use Teamupdivision\SaltId\Contracts\Factory;
 
 /**
  * @method static \Teamupdivision\SaltId\Contracts\Provider driver(string $driver = null)
- * @method static \Teamupdivision\SaltId\Two\AbstractProvider buildProvider($provider, $config)
+ * @method static \Teamupdivision\SaltId\Core\AbstractProvider buildProvider($provider, $config)
  *
  * @see \Teamupdivision\SaltId\SaltIdManager
  */

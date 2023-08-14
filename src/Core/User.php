@@ -1,6 +1,6 @@
 <?php
 
-namespace Teamupdivision\SaltId\Two;
+namespace Teamupdivision\SaltId\Core;
 
 use Teamupdivision\SaltId\AbstractUser;
 
