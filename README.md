@@ -27,7 +27,7 @@ SALTID_URL=http://saltid.com/
 Route::get('salt/redirect',  [SaltController::class, 'redirect']);
 Route::get('salt/callback', [SaltController::class, 'callback']);
 ```
-### 4. Create your controller that manages sso auth with SaltId with functions:
+### 4. Create your controller that manages sso auth SaltId with functions:
  - run `composer require teamupdivision/saltid-provider`
  - import package :
    - `use Teamupdivision\SaltId\Facades\SaltId;`
@@ -41,7 +41,8 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
      */
     public function redirect(Request $request): RedirectResponse
     {
-        $redirect = SaltId::driver('saltid')->redirect();
+        $redirect = SaltId::driver('saltid')->redirect()
+        // $redirect = SaltId::driver('saltid')->stateless()->redirect();  // use stateless() if you want to not use session
         return $redirect;
     }
 ```
@@ -56,6 +57,7 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
     public function callback(Request $request): RedirectResponse
     {
         $saltUser = SaltId::driver('saltid')->user();
+        //$saltUser = SaltId::driver('saltid')->stateless()->user();
         $user = User::where('email',$saltUser->getEmail())->first();
 
         if(!$user){
@@ -75,7 +77,7 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
 ## How to use in manual mode:
 ### 1. Please follow steps (1) (2) (3) from above
 
-### 2. Create your controller that manages sso auth with SaltId with functions:
+### 2. Create your controller that manages sso auth SaltId with functions:
  - create `redirect` function:
 ```
     /**
