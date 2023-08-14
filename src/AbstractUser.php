@@ -67,16 +67,6 @@ abstract class AbstractUser implements ArrayAccess, User
     }
 
     /**
-     * Get the nickname / username for the user.
-     *
-     * @return string|null
-     */
-    public function getNickname()
-    {
-        return $this->nickname;
-    }
-
-    /**
      * Get the full name of the user.
      *
      * @return string|null
