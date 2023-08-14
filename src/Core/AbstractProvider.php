@@ -317,6 +317,7 @@ abstract class AbstractProvider implements ProviderContract
             'client_secret' => $this->clientSecret,
             'code' => $code,
             'redirect_uri' => $this->redirectUrl,
+            'ip' => request()->ip()
         ];
 
         if ($this->usesPKCE()) {

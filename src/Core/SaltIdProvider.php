@@ -46,9 +46,6 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
 
         $user = json_decode($response->getBody(), true)['data'];
 
-        if (in_array('user:email', $this->scopes, true)) {
-            $user['email'] = $this->getEmailByToken($token);
-        }
         return $user;
     }
 
