@@ -5,29 +5,23 @@ namespace Teamupdivision\SaltId\Two;
 use Exception;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 
 class SaltIdProvider extends AbstractProvider implements ProviderInterface
 {
-    protected $config;
-
-    public function __construct($config)
-    {
-        $this->config = $config;
-
-    }
     /**
      * The scopes being requested.
      *
      * @var array
      */
-    protected $scopes = ['user:email'];
+    protected $scopes = [];
 
     /**
      * {@inheritdoc}
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://github.com/login/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(config('app.salt_url').'oauth/authorize', $state);
     }
 
     /**
@@ -35,7 +29,7 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return 'https://github.com/login/oauth/access_token';
+        return config('app.salt_url').'oauth/token';
     }
 
     /**
@@ -43,18 +37,18 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $userUrl = 'https://api.github.com/user';
+        $userUrl = config('app.salt_url').'api/v1/me';
 
-        $response = $this->getHttpClient()->get(
-            $userUrl, $this->getRequestOptions($token)
-        );
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$token
+        ])->get($userUrl);
 
-        $user = json_decode($response->getBody(), true);
+        $user = json_decode($response->getBody(), true)['data'];
 
         if (in_array('user:email', $this->scopes, true)) {
             $user['email'] = $this->getEmailByToken($token);
         }
-
         return $user;
     }
 
@@ -90,10 +84,8 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
     {
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
-            'nickname' => $user['login'],
             'name' => Arr::get($user, 'name'),
             'email' => Arr::get($user, 'email'),
-            'avatar' => $user['avatar_url'],
         ]);
     }
 

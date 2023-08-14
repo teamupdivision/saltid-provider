@@ -161,7 +161,6 @@ abstract class AbstractProvider implements ProviderContract
     public function redirect()
     {
         $state = null;
-
         if ($this->usesState()) {
             $this->request->session()->put('state', $state = $this->getState());
         }
@@ -274,7 +273,6 @@ abstract class AbstractProvider implements ProviderContract
         }
 
         $state = $this->request->session()->pull('state');
-
         return empty($state) || $this->request->input('state') !== $state;
     }
 

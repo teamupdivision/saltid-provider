@@ -9,7 +9,7 @@ use Teamupdivision\SaltId\Contracts\Factory;
  * @method static \Teamupdivision\SaltId\Contracts\Provider driver(string $driver = null)
  * @method static \Teamupdivision\SaltId\Two\AbstractProvider buildProvider($provider, $config)
  *
- * @see \Teamupdivision\SaltId\SocialiteManager
+ * @see \Teamupdivision\SaltId\SaltIdManager
  */
 class SaltId extends Facade
 {
