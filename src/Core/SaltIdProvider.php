@@ -21,7 +21,7 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase(config('app.salt_url').'oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(config('services.saltid.url').'oauth/authorize', $state);
     }
 
     /**
@@ -29,7 +29,7 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return config('app.salt_url').'oauth/token';
+        return config('services.saltid.url').'oauth/token';
     }
 
     /**
@@ -37,7 +37,7 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $userUrl = config('app.salt_url').'api/v1/me';
+        $userUrl = config('services.saltid.url').'api/v1/me';
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
@@ -53,31 +53,6 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get the email for the given access token.
-     *
-     * @param  string  $token
-     * @return string|null
-     */
-    protected function getEmailByToken($token)
-    {
-        $emailsUrl = 'https://api.github.com/user/emails';
-
-        try {
-            $response = $this->getHttpClient()->get(
-                $emailsUrl, $this->getRequestOptions($token)
-            );
-        } catch (Exception $e) {
-            return;
-        }
-
-        foreach (json_decode($response->getBody(), true) as $email) {
-            if ($email['primary'] && $email['verified']) {
-                return $email['email'];
-            }
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     protected function mapUserToObject(array $user)
@@ -87,21 +62,5 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
             'name' => Arr::get($user, 'name'),
             'email' => Arr::get($user, 'email'),
         ]);
-    }
-
-    /**
-     * Get the default options for an HTTP request.
-     *
-     * @param  string  $token
-     * @return array
-     */
-    protected function getRequestOptions($token)
-    {
-        return [
-            RequestOptions::HEADERS => [
-                'Accept' => 'application/vnd.github.v3+json',
-                'Authorization' => 'token '.$token,
-            ],
-        ];
     }
 }

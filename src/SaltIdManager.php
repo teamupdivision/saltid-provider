@@ -39,7 +39,6 @@ class SaltIdManager extends Manager implements Contracts\Factory
     {
         $config = $this->config->get('services.saltid');
 
-        // new SaltIdProvider($config);
         return $this->buildProvider(
             SaltIdProvider::class, $config
         );
