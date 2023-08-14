@@ -28,6 +28,7 @@ Route::get('salt/redirect',  [SaltController::class, 'redirect']);
 Route::get('salt/callback', [SaltController::class, 'callback']);
 ```
 ### 4. Create your controller that manages sso auth with SaltId with functions:
+ - run `composer require teamupdivision/saltid-provider`
  - import package :
    - `use Teamupdivision\SaltId\Facades\SaltId;`
  - create `redirect` function:
