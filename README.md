@@ -7,6 +7,7 @@
 * [How to use SaltId package in monolith](#how-to-use-saltid-package-in-monolith)
 * [How to use SaltId package in API](#how-to-use-saltid-package-in-api)
 * [How to use SaltId in manual mode](#how-to-use-saltid-in-manual-mode)
+* [Important functions](#important-functions)
 
 # Setup & Install
 
@@ -224,3 +225,12 @@ Run `composer require teamupdivision/saltid-provider`
         return redirect('/dashboard');
     }
 ```
+
+# Important functions on user entity
+| Function name  | Result |
+| ------------- | ------------- |
+| getName()  | Get user first name and last name from SaltId  |
+| getEmail()  | Get user email from SaltId |
+| getRole()  | Get user role from SaltId |
+| getCompany()  | Get user company from SaltId |
+| getRaw()  | Get full profile of user from SaltId |
