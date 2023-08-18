@@ -7,7 +7,7 @@
 * [How to use SaltId package in monolith](#how-to-use-saltid-package-in-monolith)
 * [How to use SaltId package in API](#how-to-use-saltid-package-in-api)
 * [How to use SaltId in manual mode](#how-to-use-saltid-in-manual-mode)
-* [Important functions](#important-functions)
+* [Important functions](#important-functions-on-user-entity)
 
 # Setup & Install
 
