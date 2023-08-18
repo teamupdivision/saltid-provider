@@ -2,8 +2,8 @@
 
 <p align="center">
 
-## Documentation
-* [Setup & install](#setup&install)
+# Documentation
+* [Setup & install](#setup-&-install)
 * [How to use SaltId package in monolith](#how-to-use-saltid-package-in-monolith)
 * [How to use SaltId package in API](#how-to-use-saltid-package-in-api)
 * [How to use SaltId in manual mode](#how-to-use-saltid-in-manual-mode)
@@ -85,7 +85,6 @@ Run `composer require teamupdivision/saltid-provider`
 
 ## How to use SaltId package in API
 ### Create your controller that manages sso auth SaltId with functions:
- - run `composer require teamupdivision/saltid-provider`
  - import package :
    - `use Teamupdivision\SaltId\Facades\SaltId;`
  - create `redirect` function:
