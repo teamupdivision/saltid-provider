@@ -8,7 +8,7 @@
 * [How to use SaltId package in API](#how-to-use-saltid-package-in-api)
 * [How to use SaltId in manual mode](#how-to-use-saltid-in-manual-mode)
 
-## Setup & Install
+# Setup & Install
 
 ### 1. Put in config/services.php
 ```
@@ -37,7 +37,7 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
 ### 4. Install package
 Run `composer require teamupdivision/saltid-provider`
 
-## How to use SaltId package in monolith
+# How to use SaltId package in monolith
 
 ### Create your controller that manages sso auth SaltId with functions:
  - import package :
@@ -83,7 +83,7 @@ Run `composer require teamupdivision/saltid-provider`
     }
 ```
 
-## How to use SaltId package in API
+# How to use SaltId package in API
 ### Create your controller that manages sso auth SaltId with functions:
  - import package :
    - `use Teamupdivision\SaltId\Facades\SaltId;`
@@ -139,7 +139,7 @@ Run `composer require teamupdivision/saltid-provider`
         ]);
     }
 ```
-## How to use SaltId in manual mode
+# How to use SaltId in manual mode
 ### Create your controller that manages sso auth SaltId with functions:
  - create `redirect` function:
 ```
