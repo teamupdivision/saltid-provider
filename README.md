@@ -2,9 +2,15 @@
 
 <p align="center">
 
-## How to use package
+## Documentation
+* [Setup & install](#setup&install)
+* [How to use SaltId package in monolith](#how-to-use-saltid-package-in-monolith)
+* [How to use SaltId package in API](#how-to-use-saltid-package-in-api)
+* [How to use SaltId in manual mode](#how-to-use-saltid-in-manual-mode)
 
-### 1. Put in config/services.php :
+## Setup & Install
+
+### 1. Put in config/services.php
 ```
 'saltid' => [
     'client_id' => env('SALTID_CLIENT_ID'),
@@ -27,8 +33,13 @@ SALTID_URL=http://saltid.com/
 Route::get('salt/redirect',  [SaltController::class, 'redirect']);
 Route::get('salt/callback', [SaltController::class, 'callback']);
 ```
-### 4. Create your controller that manages sso auth SaltId with functions:
- - run `composer require teamupdivision/saltid-provider`
+
+### 4. Install package
+Run `composer require teamupdivision/saltid-provider`
+
+## How to use SaltId package in monolith
+
+### Create your controller that manages sso auth SaltId with functions:
  - import package :
    - `use Teamupdivision\SaltId\Facades\SaltId;`
  - create `redirect` function:
@@ -41,8 +52,7 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
      */
     public function redirect(Request $request): RedirectResponse
     {
-        $redirect = SaltId::driver('saltid')->redirect()
-        // $redirect = SaltId::driver('saltid')->stateless()->redirect();  // use stateless() if you want to not use session
+        $redirect = SaltId::driver('saltid')->redirect();
         return $redirect;
     }
 ```
@@ -57,7 +67,6 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
     public function callback(Request $request): RedirectResponse
     {
         $saltUser = SaltId::driver('saltid')->user();
-        //$saltUser = SaltId::driver('saltid')->stateless()->user();
         $user = User::where('email',$saltUser->getEmail())->first();
 
         if(!$user){
@@ -74,10 +83,65 @@ Route::get('salt/callback', [SaltController::class, 'callback']);
     }
 ```
 
-## How to use in manual mode:
-### 1. Please follow steps (1) (2) (3) from above
+## How to use SaltId package in API
+### Create your controller that manages sso auth SaltId with functions:
+ - run `composer require teamupdivision/saltid-provider`
+ - import package :
+   - `use Teamupdivision\SaltId\Facades\SaltId;`
+ - create `redirect` function:
+```
+    /**
+     * Redirect function to external call for authorization step
+     *
+     * @return JsonResponse
+     */
+    public function redirect(): JsonResponse
+    {
+        $redirectTarget = SaltId::driver('saltid')->stateless()->redirect()->getTargetUrl();
+        return response()->json([
+            'data' => [
+                'redirectTarget' =>  $redirectTarget,
+            ],
+        ]);
+    }
+```
+- create `callback` function:
+```
+    /**
+     * Callback function for authorization and get user
+     *
+     * @return JsonResponse
+     */
+    public function callback(): JsonResponse
+    {
+        try {
+            $saltUser = SaltId::driver('saltid')->stateless()->user();
+        } catch (Throwable) {
+            return response()->json([
+                'message' => 'Code expired',
+            ], 401);
+        }
 
-### 2. Create your controller that manages sso auth SaltId with functions:
+        if (User::where('email', $saltUser->getEmail())->doesntExist()) {
+            User::create([
+                'name' => $saltUser->getName() ?? $saltUser->getEmail(),
+                'email' => $saltUser->getEmail(),
+                'password' => Hash::make('password'),
+            ]);
+        }
+
+        return response()->json([
+            'data' => [
+                'type' => 'Bearer',
+                'access_token' => $saltUser->token,
+                'refreshToken' => $saltUser->refreshToken,
+                'expiresIn' => $saltUser->expiresIn,
+            ],
+        ]);
+    }
+```
+## How to use SaltId in manual mode
+### Create your controller that manages sso auth SaltId with functions:
  - create `redirect` function:
 ```
     /**

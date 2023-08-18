@@ -15,7 +15,6 @@ class SaltIdManager extends Manager implements Contracts\Factory
      *
      * @var \Illuminate\Contracts\Foundation\Application
      *
-     * @deprecated Will be removed in a future Socialite release.
      */
     protected $app;
 
@@ -126,6 +125,6 @@ class SaltIdManager extends Manager implements Contracts\Factory
      */
     public function getDefaultDriver()
     {
-        throw new InvalidArgumentException('No Socialite driver was specified.');
+        throw new InvalidArgumentException('No driver was specified.');
     }
 }
