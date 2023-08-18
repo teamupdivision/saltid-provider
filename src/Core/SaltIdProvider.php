@@ -56,8 +56,10 @@ class SaltIdProvider extends AbstractProvider implements ProviderInterface
     {
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
-            'name' => Arr::get($user, 'name'),
+            'name' => Arr::get($user, 'firstName') . Arr::get($user, 'lastName'),
             'email' => Arr::get($user, 'email'),
+            'role' => Arr::get($user, 'role')['name'],
+            'company' => Arr::get($user, 'company')['name'],
         ]);
     }
 }

@@ -31,4 +31,19 @@ interface User
      * @return string|null
      */
     public function getAvatar();
+
+    /**
+     * Get the role of the user.
+     *
+     * @return string|null
+     */
+    public function getRole();
+
+
+    /**
+     * Get the company of the user.
+     *
+     * @return string|null
+     */
+    public function getCompany();
 }

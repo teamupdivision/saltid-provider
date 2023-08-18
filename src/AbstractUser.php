@@ -77,6 +77,26 @@ abstract class AbstractUser implements ArrayAccess, User
     }
 
     /**
+     * Get the role of the user.
+     *
+     * @return string|null
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Get the role of the user.
+     *
+     * @return string|null
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
      * Get the e-mail address of the user.
      *
      * @return string|null
